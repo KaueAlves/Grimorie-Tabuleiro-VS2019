@@ -1,4 +1,4 @@
-#include "../../headers/pecas/Guerreiro.h"
+#include "Guerreiro.h"
 
 //Construtores 
 Guerreiro::Guerreiro(pair<int,int> tamanho,Times_Jogo time):Peca(tamanho,time){

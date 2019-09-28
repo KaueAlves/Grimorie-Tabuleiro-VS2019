@@ -42,7 +42,8 @@ public:
     string definirComponente(shared_ptr<Componente> componente);
     void adicionarMapEspecifico(shared_ptr<Componente> componente);
     void removerMapEspecifico(shared_ptr<Componente> componente);
-    shared_ptr<Componente> verificarPeca(Posicao pos);
+    shared_ptr<Componente> verificarComponente(Posicao pos);
+	shared_ptr<Peca> verificarPeca(Posicao pos);
 
     string toString();
 };

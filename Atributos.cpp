@@ -46,7 +46,7 @@ void Atributos::setDano(int dano){
     this->dano = dano;
 }
 void Atributos::setTempoRecarga(int tempoRecarga){
-    this->hp = tempoRecarga;
+    this->tempoRecarga = tempoRecarga;
 }
 void Atributos::setAlcance(int alcance){
     this->alcance = alcance;

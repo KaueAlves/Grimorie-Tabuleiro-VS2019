@@ -45,8 +45,12 @@ void Peca::setAtributos(Atributos atb){
 
 //Funções 
 
-bool movimentosPossiveis(Posicao pos){
+bool Peca::movimentosPossiveis(Posicao pos){
     return false;
+}
+
+void Peca::receberDano(int num) {
+	this->atributos.setHP(this->atributos.getHP() - num);
 }
 
 string Peca::toString(){

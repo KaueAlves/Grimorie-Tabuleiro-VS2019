@@ -36,6 +36,7 @@ public:
 
     //Funções
     bool movimentosPossiveis(Posicao pos);
+	void receberDano(int num);
     string toString();
 };
 

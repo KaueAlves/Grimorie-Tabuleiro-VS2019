@@ -27,9 +27,9 @@ int Posicao::getZ(){
 }
 
 void Posicao::addPosicao(int x, int y, int z){
-    this->x += x;
-    this->y += y;
-    this->z += z;
+    this->x = this->x + x;
+    this->y = this->y + y;
+    this->z = this->z + z;
 }
 
 string Posicao::toString(){

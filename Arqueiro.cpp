@@ -1,4 +1,4 @@
-#include "../../headers/pecas/Arqueiro.h"
+#include "Arqueiro.h"
 
 //Construtores 
 Arqueiro::Arqueiro(pair<int,int> tamanho, Times_Jogo time):Peca(tamanho,time){

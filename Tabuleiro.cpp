@@ -122,17 +122,32 @@ bool Tabuleiro::moverPeca(Posicao ini, Posicao end){
 }
 
 /*
-*   Tabuleiro::verificarPeca(Posicao pos)
+*   Tabuleiro::verificarComponente(Posicao pos)
 *   Param: objPosicao
-*   Return: booleano
+*   Return: Peca
 *   Descrição: verifica uma peca no tabuleiro
 */
-shared_ptr<Componente> Tabuleiro::verificarPeca(Posicao pos){
+shared_ptr<Componente> Tabuleiro::verificarComponente(Posicao pos){
     if(!this->verificarOcupacao(pos)){
         return this->tab_comp[to_string(pos.getX())+to_string(pos.getY())+to_string(pos.getZ())];
     }else{
         return NULL;
     }
+}
+
+/*
+*   Tabuleiro::verificarPeca(Posicao pos)
+*   Param: objPosicao
+*   Return: Peca
+*   Descrição: verifica uma peca no tabuleiro
+*/
+shared_ptr<Peca> Tabuleiro::verificarPeca(Posicao pos) {
+	if (!this->verificarOcupacao(pos)) {
+		return this->tab_pecas[to_string(pos.getX()) + to_string(pos.getY()) + to_string(pos.getZ())];
+	}
+	else {
+		return NULL;
+	}
 }
 
 /*
@@ -158,7 +173,7 @@ bool Tabuleiro::verificarOcupacao(Posicao pos){
 *   Descrição: Verifica se a posição informada é contemplada por este tabuleiro
 */
 bool Tabuleiro::verificarPosicaoValida(Posicao pos){
-    if(pos.getX() < this->x && pos.getY() < this->y && pos.getZ() < this->z ){
+    if(pos.getX() < this->x && pos.getY() < this->y && pos.getZ() < this->z && pos.getX() >= 0 && pos.getY() >= 0 && pos.getZ() >= 0){
         return true;
     }else{
         return false;
@@ -192,7 +207,11 @@ string Tabuleiro::toString(){
     return output;
 }
 
-
+/*
+*   Tabuleiro::definirComponente()
+*   Return @string
+*   Descrição: 
+*/
 string Tabuleiro::definirComponente(shared_ptr<Componente> componente){
     const Tipo_Componentes aux = componente->especializacao;
     switch (aux)
@@ -269,7 +288,7 @@ void Tabuleiro::removerMapEspecifico(shared_ptr<Componente> componente){
         //     }
         //     break;
         default:
-                this->tab_comp.erase(componente->getPosicao().toString());
-            break;
+            this->tab_comp.erase(componente->getPosicao().toString());
+        break;
     }
 }

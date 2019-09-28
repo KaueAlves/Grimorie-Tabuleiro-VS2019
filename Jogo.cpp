@@ -9,6 +9,51 @@ Jogo::~Jogo()
 {
 }
 
+void Jogo::iniciarJogo() {
+	auto tab = this->getTabuleiro();
+	do
+	{
+		// Loop padrão
+		for (auto&& pecaSelecionada : tab->getTabPeca())
+		{
+			Posicao newPos = pecaSelecionada.second->getPosicao();
+			(pecaSelecionada.second->getTime() == Times_Jogo::time_azul) ? newPos.addPosicao(1, 0, 0) : newPos.addPosicao(-1, 0, 0);
+
+			if (!tab->moverPeca(pecaSelecionada.second->getPosicao(), newPos) && tab->verificarPosicaoValida(newPos)) {
+				if (verificarTime(pecaSelecionada.second, tab->verificarPeca(newPos))) {
+					this->atacarPeca(pecaSelecionada.second, tab->verificarPeca(newPos));
+				}
+			}
+		}
+		// Contagem de mortos
+		for (auto&& pecaSelecionada : tab->getTabPeca())
+		{
+			if (pecaSelecionada.second->getAtributos()->getHP() <= 0) { 
+				auto peca = tab->removerPeca(pecaSelecionada.second->getPosicao());
+			}
+		}
+
+		for(auto&& pecaSelecionada : tab->getTabPeca())
+		{
+			auto peca = pecaSelecionada.second;
+			if (peca->getTime() == Times_Jogo::time_azul) {
+				if (peca->getPosicao().getX() == tab->getX()-1) {
+					tab->removerPeca(peca->getPosicao());
+					contabilizarPontos(Times_Jogo::time_azul);
+				}
+			}
+			else {
+				if (peca->getPosicao().getX() == 0) {
+					tab->removerPeca(peca->getPosicao());
+					contabilizarPontos(Times_Jogo::time_vermelho);
+				}
+			}
+		}
+		cout << "Placar do Time Azul: " << this->placarAzul << "|| Placar do Time Vermelho: " << this->placarVermelho << endl;
+		cout << tab->toString();
+	} while (tab->getTabPeca().size() > 0);
+}
+
 shared_ptr<Tabuleiro> Jogo::getTabuleiro(){
     return this->tab;
 }
@@ -37,8 +82,8 @@ void Jogo::colocarTime2(){
     this->getTabuleiro()->adicionarPeca( Posicao(10,0,0), guer2 );
     this->getTabuleiro()->adicionarPeca( Posicao(10,1,0), mago2 );
     this->getTabuleiro()->adicionarPeca( Posicao(11,0,0), arqu2 );
-    this->getTabuleiro()->adicionarPeca( Posicao(11,1,0), mago2 );
-    this->getTabuleiro()->adicionarPeca( Posicao(11,2,0), arqu2 );
+    this->getTabuleiro()->adicionarPeca( Posicao(11,1,0), mago22 );
+    this->getTabuleiro()->adicionarPeca( Posicao(11,2,0), arqu22 );
 }
 
 void Jogo::escolherTime1(){
@@ -148,6 +193,27 @@ void Jogo::escolherTime2(){
 
 }
 
-void Jogo::movimentarPeca(){
-    this->tab->getTabComp();
+void Jogo::atacarPeca(shared_ptr<Peca> pecaAtacante, shared_ptr<Peca> pecaDefensora) {
+	cout << pecaAtacante->getMark() << " - Atacou a Peca: " << pecaDefensora->getMark() << endl;
+	cout << pecaDefensora->getAtributos()->getHP() << endl;
+	pecaDefensora->receberDano(pecaAtacante->getAtributos()->getDano());
+	cout << pecaDefensora->getAtributos()->getHP() << endl;
+}
+
+bool Jogo::verificarTime(shared_ptr<Peca> peca1, shared_ptr<Peca> peca2) {
+	if (peca1->getTime() == peca2->getTime()) {
+		return false;
+	}else{
+		return true;
+	}
+}
+
+void Jogo::contabilizarPontos(Times_Jogo time) {
+	if (time == Times_Jogo::time_azul) {
+		this->placarAzul++;
+	}
+	else
+	{
+		this->placarVermelho++;
+	}
 }
