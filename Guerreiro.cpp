@@ -6,7 +6,7 @@ Guerreiro::Guerreiro(pair<int,int> tamanho,Times_Jogo time):Peca(tamanho,time){
     atb->setHP(6);
     atb->setDano(4);
     atb->setIniciativa(0);
-    atb->setAlcance(0);
+    atb->setAlcance(1);
     atb->setTempoRecarga(0);
     
     this->setMark("G");

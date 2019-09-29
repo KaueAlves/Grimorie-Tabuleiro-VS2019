@@ -6,7 +6,7 @@ Mago::Mago(pair<int,int> tamanho,Times_Jogo time):Peca(tamanho,time){
     atb->setHP(4);
     atb->setDano(6);
     atb->setIniciativa(0);
-    atb->setAlcance(3);
+    atb->setAlcance(2);
     atb->setTempoRecarga(2);
     
     this->setMark("M");

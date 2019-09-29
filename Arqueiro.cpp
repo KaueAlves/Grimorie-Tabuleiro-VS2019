@@ -6,7 +6,7 @@ Arqueiro::Arqueiro(pair<int,int> tamanho, Times_Jogo time):Peca(tamanho,time){
     atb->setHP(2);
     atb->setDano(2);
     atb->setIniciativa(0);
-    atb->setAlcance(2);
+    atb->setAlcance(5);
     atb->setTempoRecarga(0);
     
     this->setMark("A");

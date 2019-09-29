@@ -1,2 +1,3 @@
 ﻿  Jogo.cpp
+D:\Projetos\Grimorie-Tabuleiro-VS2019\Jogo.cpp(225): warning C4715:  'Jogo::realizarAtaques': nem todos os caminhos de controle retornam um valor
   Grimorie-Tabuleiro-VS2019.vcxproj -> D:\Projetos\Grimorie-Tabuleiro-VS2019\Debug\Grimorie-Tabuleiro-VS2019.exe

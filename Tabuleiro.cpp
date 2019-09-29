@@ -142,7 +142,7 @@ shared_ptr<Componente> Tabuleiro::verificarComponente(Posicao pos){
 *   Descrição: verifica uma peca no tabuleiro
 */
 shared_ptr<Peca> Tabuleiro::verificarPeca(Posicao pos) {
-	if (!this->verificarOcupacao(pos)) {
+	if (!this->verificarOcupacao(pos) && verificarPosicaoValida(pos)) {
 		return this->tab_pecas[to_string(pos.getX()) + to_string(pos.getY()) + to_string(pos.getZ())];
 	}
 	else {

@@ -19,9 +19,11 @@ public:
     void escolherTime1();
     void escolherTime2();
     void movimentarPeca();
+	bool realizarAtaques(shared_ptr<Peca> pecaAtacante, shared_ptr<Tabuleiro> tab);
 	void atacarPeca(shared_ptr<Peca> pecaAtacante, shared_ptr<Peca> PecaDefensora);
 	bool verificarTime(shared_ptr<Peca> peca1, shared_ptr<Peca> peca2);
-	void contabilizarPontos(Times_Jogo time);
+	void contabilizarPontos(shared_ptr<Peca> pecaAtacante, shared_ptr<Tabuleiro> tab);
+	void contabilizarMortos(shared_ptr<Tabuleiro> tab);
 	void iniciarJogo();
     
 };
